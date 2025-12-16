@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Ella 🎉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #4a90e2;
+        --secondary: #60a5fa;
+        --accent: #2563eb;
+        --dark: #1e3a8a;
+        --light: #f0f9ff;
+        --card-bg: #ffffff;
+        --shadow-sm: 0 2px 8px rgba(37, 99, 235, 0.08);
+        --shadow-md: 0 8px 24px rgba(37, 99, 235, 0.12);
+        --shadow-lg: 0 20px 48px rgba(37, 99, 235, 0.16);
+        --shadow-xl: 0 30px 70px rgba(74, 144, 226, 0.25);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        padding: 32px 16px;
+        background: linear-gradient(
+          135deg,
+          #e0f2fe 0%,
+          #f0f9ff 50%,
+          #e6f3ff 100%
+        );
+        font-family: "Poppins", sans-serif;
+        color: var(--dark);
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(74, 144, 226, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(96, 165, 250, 0.05) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .page {
+        width: min(520px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .card {
+        background: var(--card-bg);
+        padding: 48px 40px;
+        border-radius: 28px;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          rgba(74, 144, 226, 0.2),
+          rgba(96, 165, 250, 0.2)
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .card:hover::before {
+        opacity: 1;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 48px;
+        font-weight: 900;
+        margin-bottom: 16px;
+        letter-spacing: -0.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--accent) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .emoji-original {
+        color: inherit;
+        -webkit-text-fill-color: inherit;
+      }
+
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 12px;
+      }
+
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        color: #555;
+        line-height: 1.8;
+        letter-spacing: 0.3px;
+      }
+
+      .reveal {
+        margin-top: 24px;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .reveal.show {
+        display: block;
+        opacity: 1;
+      }
+
+      .reveal p {
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--primary);
+        font-style: italic;
+        line-height: 1.9;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+        margin-top: 32px;
+      }
+
+      button {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--accent) 100%
+        );
+        color: white;
+        border: none;
+        border-radius: 999px;
+        padding: 14px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: left 0.4s ease;
+      }
+
+      button:hover::before {
+        left: 100%;
+      }
+
+      button:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        letter-spacing: 1px;
+      }
+
+      button:active {
+        transform: translateY(-2px);
+      }
+
+      .gallery {
+        display: none;
+      }
+
+      .tile {
+        display: none;
+      }
+
+      .caption {
+        display: none;
+      }
+
+      .hint {
+        font-size: 14px;
+        color: #333;
+        text-align: center;
+      }
+
+      .viewer {
+        position: fixed;
+        inset: 0;
+        background: rgba(42, 26, 62, 0.85);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 10;
+      }
+
+      .viewer.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .viewer-content {
+        background: var(--card-bg);
+        border-radius: 24px;
+        width: min(900px, 100%);
+        box-shadow: var(--shadow-xl);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+
+      .viewer-media {
+        width: 100%;
+        max-height: 70vh;
+        background: #000;
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .viewer-media video,
+      .viewer-media img {
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+        object-fit: contain;
+      }
+
+      .viewer-caption {
+        text-align: center;
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--primary);
+        padding: 0 12px;
+        font-style: italic;
+      }
+
+      .viewer-controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="card">
+        <h1>
+          <span class="gradient-text">🎉 Happy Birthday</span
+          ><span class="emoji-original"> P🤍🎂</span>
+        </h1>
+        <p>
+          Today is all about you 💖🍑<br /><br />
+          I know this season has been filled with plans, pressure, expectations.
+          But I hope today reminds you that you’re appreciated just as you are.
+          Your strength, your warmth, your presence, they don’t go unnoticed.
+          This isn’t about perfection. It’s about you.
+        </p>
+        <p>Always wishing you happiness and love 💕🌸</p>
+
+        <div class="actions">
+          <button id="revealBtn">Reveal a little note 💌</button>
+          <button id="memoriesBtn">Tap to view your memories 🎶</button>
+        </div>
+
+        <div id="hiddenMessage" class="reveal">
+          <p>
+            You light up every room you enter. Thank you for your kindness, your
+            laughter, and the way you make the everyday feel special. I’m
+            grateful for you today, always and forever.
+          </p>
+        </div>
+      </div>
+
+      <audio id="bgAudio" loop preload="auto" style="display: none"></audio>
+    </div>
+
+    <div id="viewer" class="viewer">
+      <div class="viewer-content">
+        <div class="viewer-media">
+          <video id="viewerVideo" class="hidden" controls playsinline></video>
+          <img id="viewerImage" class="hidden" alt="Memory" />
+        </div>
+        <div id="viewerCaption" class="viewer-caption"></div>
+        <div class="viewer-controls">
+          <button id="closeViewer">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Media list built from the public folder (add or rename files there)
+      const media = [
+        {
+          type: "video",
+          src: "public/IMG_2791.MP4",
+          caption: "Cute face, bad intentions. 😇😏",
+        },
+        {
+          type: "video",
+          src: "public/IMG_2792.MOV",
+          caption: "Pretty, bored, still dangerous. 💅",
+        },
+        {
+          type: "video",
+          src: "public/IMG_2793.MOV",
+          caption: "Don’t rush me… I’m already fine. 😌",
+        },
+        {
+          type: "video",
+          src: "public/IMG_2794.MP4",
+          caption: "Soft look, heavy impact. 💥💖",
+        },
+        {
+          type: "image",
+          src: "public/IMG_2795.JPG",
+          caption: "Sweet smile, secret attitude. 😉",
+        },
+        {
+          type: "video",
+          src: "public/IMG_2796.MP4",
+          caption: "Face card never declines. 💳✨",
+        },
+        {
+          type: "video",
+          src: "public/IMG_2797.MP4",
+          caption: "Naturally cute. Effortlessly me. 💕",
+        },
+        {
+          type: "image",
+          src: "public/IMG_2798.JPEG.jpg",
+          caption: "Too fine to be acting normal. 😮‍💨🔥",
+        },
+        {
+          type: "video",
+          src: "public/IMG_2800.MP4",
+          caption: "Just minding my business… beautifully. 😌💗",
+        },
+      ];
+
+      const hiddenMessage = document.getElementById("hiddenMessage");
+      document.getElementById("revealBtn").addEventListener("click", () => {
+        hiddenMessage.classList.toggle("show");
+      });
+
+      const bgAudio = document.getElementById("bgAudio");
+      // Place your downloaded MP3 file in the public folder
+      bgAudio.src = "public/whos-that-girl.mp3";
+
+      const memoriesBtn = document.getElementById("memoriesBtn");
+      const viewer = document.getElementById("viewer");
+      const viewerVideo = document.getElementById("viewerVideo");
+      const viewerImage = document.getElementById("viewerImage");
+      const viewerCaption = document.getElementById("viewerCaption");
+      const closeViewer = document.getElementById("closeViewer");
+
+      let currentIndex = 0;
+      let imageTimer = null;
+      const imageDurationMs = 5000;
+
+      function clearTimers() {
+        if (imageTimer) {
+          clearTimeout(imageTimer);
+          imageTimer = null;
+        }
+      }
+
+      function stopPlayback() {
+        clearTimers();
+        viewerVideo.pause();
+        viewerVideo.src = "";
+        viewerImage.src = "";
+        bgAudio.pause();
+        viewer.classList.remove("show");
+      }
+
+      function nextMedia() {
+        currentIndex = (currentIndex + 1) % media.length;
+        showMedia(currentIndex);
+      }
+
+      function showMedia(index) {
+        clearTimers();
+        const item = media[index];
+        viewerCaption.textContent = item.caption || "";
+
+        if (item.type === "image") {
+          viewerVideo.classList.add("hidden");
+          viewerVideo.pause();
+          viewerImage.classList.remove("hidden");
+          viewerImage.src = item.src;
+          imageTimer = setTimeout(nextMedia, imageDurationMs);
+        } else {
+          viewerImage.classList.add("hidden");
+          viewerVideo.classList.remove("hidden");
+          viewerVideo.src = item.src;
+          viewerVideo.currentTime = 0;
+          viewerVideo.onended = nextMedia;
+          viewerVideo.onerror = nextMedia;
+          viewerVideo.play().catch((err) => {
+            console.error("Video play error", err);
+            nextMedia();
+          });
+        }
+      }
+
+      memoriesBtn.addEventListener("click", async () => {
+        currentIndex = 0;
+        viewer.classList.add("show");
+        try {
+          await bgAudio.play();
+        } catch (err) {
+          console.warn("Audio play blocked; user may need to tap again", err);
+        }
+        showMedia(currentIndex);
+      });
+
+      closeViewer.addEventListener("click", stopPlayback);
+      viewer.addEventListener("click", (e) => {
+        if (e.target === viewer) {
+          stopPlayback();
+        }
+      });
+    </script>
+  </body>
+</html>

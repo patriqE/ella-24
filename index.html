@@ -418,6 +418,21 @@
           src: "public/IMG_2800.MP4",
           caption: "Just minding my business… beautifully. 😌💗",
         },
+        {
+          type: "image",
+          src: "public/IMG_2806.JPG",
+          caption: "✨ Birthday glow, wrapped in love and confidence 🎂",
+        },
+        {
+          type: "image",
+          src: "public/IMG_2807.JPG",
+          caption: "💋 Another year prettier, stronger, and unforgettable 🎉",
+        },
+        {
+          type: "image",
+          src: "public/IMG_2808.JPG",
+          caption: "🎂 Soft smiles, bright candles, beautiful moments ✨",
+        },
       ];
 
       const hiddenMessage = document.getElementById("hiddenMessage");
@@ -457,8 +472,12 @@
       }
 
       function nextMedia() {
-        currentIndex = (currentIndex + 1) % media.length;
-        showMedia(currentIndex);
+        currentIndex = currentIndex + 1;
+        if (currentIndex >= media.length) {
+          stopPlayback();
+        } else {
+          showMedia(currentIndex);
+        }
       }
 
       function showMedia(index) {

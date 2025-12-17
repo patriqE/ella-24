@@ -234,6 +234,98 @@
         transform: translateY(-2px);
       }
 
+      button:hover {
+        box-shadow: 0 0 20px rgba(74, 144, 226, 0.5), var(--shadow-lg);
+      }
+
+      @keyframes slideUpFade {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .page {
+        animation: slideUpFade 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .sparkle {
+        position: fixed;
+        pointer-events: none;
+        font-size: 20px;
+        animation: sparkle 1s ease-in-out forwards;
+        z-index: 9;
+      }
+
+      @keyframes confetti-fall {
+        to {
+          transform: translateY(100vh) rotateZ(720deg);
+          opacity: 0;
+        }
+      }
+
+      .confetti {
+        position: fixed;
+        pointer-events: none;
+        font-size: 24px;
+        animation: confetti-fall 3s ease-in forwards;
+        z-index: 11;
+      }
+
+      @keyframes revealBounce {
+        0% {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .reveal.show {
+        animation: revealBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .media-progress {
+        text-align: center;
+        font-size: 13px;
+        color: #888;
+        padding: 8px 0 0 0;
+        font-weight: 500;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(74, 144, 226, 0.15);
+        font-size: 13px;
+        color: #888;
+      }
+
+      .footer-decoration {
+        margin: 8px 0;
+        font-size: 16px;
+        letter-spacing: 4px;
+      }
+
       .gallery {
         display: none;
       }
@@ -353,6 +445,10 @@
             grateful for you today, always and forever.
           </p>
         </div>
+        <div class="footer">
+          <div class="footer-decoration">✨ 💙 ✨</div>
+          <p>Celebrating the beauty of you</p>
+        </div>
       </div>
 
       <audio id="bgAudio" loop preload="auto" style="display: none"></audio>
@@ -365,6 +461,7 @@
           <img id="viewerImage" class="hidden" alt="Memory" />
         </div>
         <div id="viewerCaption" class="viewer-caption"></div>
+        <div id="mediaProgress" class="media-progress"></div>
         <div class="viewer-controls">
           <button id="closeViewer">Close</button>
         </div>
@@ -445,6 +542,10 @@
       const hiddenMessage = document.getElementById("hiddenMessage");
       document.getElementById("revealBtn").addEventListener("click", () => {
         hiddenMessage.classList.toggle("show");
+        if (hiddenMessage.classList.contains("show")) {
+          createConfetti();
+          createSparkles();
+        }
       });
 
       const bgAudio = document.getElementById("bgAudio");
@@ -491,6 +592,9 @@
         clearTimers();
         const item = media[index];
         viewerCaption.textContent = item.caption || "";
+        document.getElementById("mediaProgress").textContent = `${
+          index + 1
+        } of ${media.length}`;
 
         if (item.type === "image") {
           viewerVideo.classList.add("hidden");
@@ -529,6 +633,34 @@
           stopPlayback();
         }
       });
+
+      function createConfetti() {
+        const confettiEmojis = ["🎉", "✨", "💖", "🎂", "🎁", "💫"];
+        for (let i = 0; i < 20; i++) {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          confetti.textContent =
+            confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+          confetti.style.left = Math.random() * 100 + "%";
+          confetti.style.top = "-20px";
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 3000);
+        }
+      }
+
+      function createSparkles() {
+        const sparkleEmojis = ["✨", "💫", "⭐"];
+        for (let i = 0; i < 8; i++) {
+          const sparkle = document.createElement("div");
+          sparkle.classList.add("sparkle");
+          sparkle.textContent =
+            sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+          sparkle.style.left = Math.random() * window.innerWidth + "px";
+          sparkle.style.top = Math.random() * window.innerHeight + "px";
+          document.body.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 1000);
+        }
+      }
     </script>
   </body>
 </html>
